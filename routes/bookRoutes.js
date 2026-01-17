@@ -7,11 +7,14 @@ const router = express.Router();
 //post
 router.post('/', async (req,res) => {
     try{
-
-    }catch {
+        const createBook = await Book.create(req, body);
+        res.status(201).json(createBook);
+    }catch (error) {  
+        console.error('Error creating book', error.message);
+        res.status(400).json({message: 'That couldnt be created, try again later'})
 
     }
-}
+});
 
 //get /
 
@@ -24,6 +27,5 @@ router.post('/', async (req,res) => {
 
 //delete
 
-)
 
 //export the router

@@ -4,6 +4,7 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 const connectToDB = require('./db/connection');
 const bookRoutes = require('express');
+
 //adding middleware
 app.use(express.json());
 
@@ -11,6 +12,8 @@ app.use(express.json());
 app.get('/', (req,res) => {
     res.send('<h1>Digital Bookshelf</>');
 });
+
+app.use('/api/books',bookRoutes);
 
 const startServer = async () => {
     await connectToDB();

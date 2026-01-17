@@ -49,9 +49,16 @@ router.get('/', async (req,res) => {
 router.put('/:id', async (req,res)=>{
     try{
         const {id} = req.params;
-        const updateBook = await Book.findByIdAndUpdate(id, req.body. {
+        const updateBook = await Book.findByIdAndUpdate(id, req.body, {
             new:true
         });
+    if (!updateBook){
+        return res.status(404).json({message:`Book with this id can not be found`});
+    }
+    res.status(200).json(updateBook);
+    } catch (error) {
+        console.error('Error');
+        res.status(400).json({message: `Failed to update your book`});
     }
 })
 

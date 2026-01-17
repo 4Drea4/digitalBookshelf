@@ -7,15 +7,19 @@ const bookSchema = new mongoose.Schema (
         title: {
             type: String,
             required: [true, 'Enter your title'],
+            trim:true
         },
         author: {
             type: String,
-            required: true
+            required: [true, 'Author is required'],
+            trim: true
         },
         isbn:{
             type: String,
-            unique:true
+            unique:true,
+            trim: true
         },
+        
         publishedDate: {
             type:Date
         },
@@ -28,4 +32,3 @@ const bookSchema = new mongoose.Schema (
     const Book = mongoose.model('Book', bookSchema);
 
     module.exports = Book;
-    

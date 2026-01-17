@@ -63,7 +63,19 @@ router.put('/:id', async (req,res)=>{
 })
 
 //delete
-
+router.delete('/:id', async (req, res) => {
+    try{
+        const {id} = req.params;
+        const deleteBook = await Book.findByIdAndDelete(id);
+        if(!deleteBook) {
+            return res.status(404).json({message: `Book with this id can not be found`});
+        }
+        res.status(200).json({message:'Okay this book was deleted'});
+    }catch (error) {
+        console.error('Error having some troubles deleting this book');
+        res.status(400).json({message:'Couldnt delete this book, try again later'});
+    }
+})
 
 //export the router
 module.exports = router;

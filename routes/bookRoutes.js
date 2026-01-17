@@ -30,7 +30,20 @@ router.get('/', async (req,res) => {
 );
 
 // get /id:
+ router.get('/:id', async (req,res) => {
+    try {
+        const {id} = req.params;
+        const book = await Book.findById(id);
+        if (!book) {
+            return res.status(404).json({message: `Book with this id is not found`})
+        } res.status(200).json(book);
+    }
+        catch (error) {
+            console.error('There was a problem  getting your book');
+        res.status(400).json({message:`Uh oh thats not right, something seems to failed on our end`}); }
 
+    }
+ )
 
 // PUT /:id
 

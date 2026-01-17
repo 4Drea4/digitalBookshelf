@@ -18,6 +18,16 @@ router.post('/', async (req,res) => {
 
 //get /
 
+router.get('/', async (req,res) => {
+    try{
+        const everyBook = await Book.find();
+        res.status(200).json(everyBook);
+    }catch (error) {
+        console.error('Error getting books');
+        res.status(500).json({message: 'Could not get books'})
+    }
+}
+);
 
 // get /id:
 

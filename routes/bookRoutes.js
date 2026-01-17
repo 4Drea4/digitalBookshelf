@@ -46,9 +46,17 @@ router.get('/', async (req,res) => {
  )
 
 // PUT /:id
-
+router.put('/:id', async (req,res)=>{
+    try{
+        const {id} = req.params;
+        const updateBook = await Book.findByIdAndUpdate(id, req.body. {
+            new:true
+        });
+    }
+})
 
 //delete
 
 
 //export the router
+module.exports = router;
